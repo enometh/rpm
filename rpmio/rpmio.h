@@ -26,9 +26,9 @@ extern "C" {
  * typedefs to isolate the lossage.
  */
 #if defined(__GLIBC__) && \
-	(__GLIBC__ > 2 || (__GLIBC__ == 2 && __GLIBC_MINOR__ >= 2))
+	(__GLIBC__ > 2 || (__GLIBC__ == 2 && __GLIBC_MINOR__ >= 2)) && 0
 #define USE_COOKIE_SEEK_POINTER 1
-typedef _IO_off64_t 	_libio_off_t;
+typedef off64_t         _libio_pos_t;
 typedef _libio_off_t *	_libio_pos_t;
 #else
 typedef off_t 		_libio_off_t;

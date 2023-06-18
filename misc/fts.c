@@ -1118,7 +1118,7 @@ fts_safe_changedir(FTS * sp, FTSENT * p, int fd, const char * path)
 		return (0);
 	if (fd < 0 && (newfd = __open(path, O_RDONLY, 0)) < 0)
 		return (-1);
-	if (__fxstat64(_STAT_VER, newfd, &sb)) {
+	if (fstat64(newfd, &sb)) {
 		ret = -1;
 		goto bail;
 	}

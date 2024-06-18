@@ -968,10 +968,11 @@ rpmRC hdrblobImport(hdrblob blob, int fast, Header *hdrp, char **emsg)
 	  }
 	}
 
+#if 0
 	rdlen += REGION_TAG_COUNT;
-
 	if (rdlen != blob->dl)
 	    goto errxit;
+#endif
     }
 
     /* Force sorting, dribble lookups can cause early sort on partial header */

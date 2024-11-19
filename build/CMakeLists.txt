@@ -29,9 +29,12 @@ target_link_libraries(librpmbuild PRIVATE
 	libmisc
 	PkgConfig::POPT
 	LUA::LUA
-	MAGIC::MAGIC
 	${Intl_LIBRARIES}
 )
+
+if (MAGIC_FOUND)
+	target_link_libraries(librpmbuild PRIVATE PkgConfig::MAGIC)
+endif()
 
 if (LIBDW_FOUND)
 	target_link_libraries(librpmbuild PRIVATE PkgConfig::LIBDW)

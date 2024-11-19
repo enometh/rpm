@@ -237,14 +237,15 @@ set_target_properties(LUA::LUA PROPERTIES
 		      INTERFACE_INCLUDE_DIRECTORIES "${LUA_INCLUDE_DIR}")
 
 # file >= 5.39 ships a pkg-config, may move to that later
-add_library(MAGIC::MAGIC UNKNOWN IMPORTED)
-find_library(MAGIC_LIBRARY NAMES magic REQUIRED)
-find_path(MAGIC_INCLUDE_DIR NAMES magic.h REQUIRED)
-mark_as_advanced(MAGIC_LIBRARY)
-mark_as_advanced(MAGIC_INCLUDE_DIR)
-set_target_properties(MAGIC::MAGIC PROPERTIES
-		      IMPORTED_LOCATION "${MAGIC_LIBRARY}")
-target_include_directories(MAGIC::MAGIC INTERFACE "${MAGIC_INCLUDE_DIR}")
+#add_library(MAGIC REQUIRED  IMPORTED_TARGET libmagic)
+#find_library(MAGIC_LIBRARY NAMES libmagic REQUIRED)
+#find_path(MAGIC_INCLUDE_DIR NAMES magic.h REQUIRED)
+#mark_as_advanced(MAGIC_LIBRARY)
+#mark_as_advanced(MAGIC_INCLUDE_DIR)
+pkg_check_modules(MAGIC REQUIRED IMPORTED_TARGET libmagic)
+#set_target_properties(MAGIC::MAGIC PROPERTIES
+#		      IMPORTED_LOCATION "${MAGIC_LIBRARY}")
+#target_include_directories(MAGIC::MAGIC INTERFACE "${MAGIC_INCLUDE_DIR}")
 
 if (ENABLE_OPENMP)
 	find_package(OpenMP 4.5 REQUIRED)
